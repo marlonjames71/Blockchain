@@ -53,6 +53,15 @@ class Blockchain(object):
         self.chain.append(block)
         # Return the new block
         return block
+    
+    def new_transaction(self, sender, recipient, amount):
+        self.current_transactions.append({
+            'sender': sender,
+            'recipient': recipient,
+            'amount': amount
+        })
+        
+        return self.last_block['index'] + 1
 
     def hash(self, block):
         """
@@ -106,7 +115,7 @@ class Blockchain(object):
         # TODO
         guess = f"{block_string}{proof}".encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
-        return guess_hash[:6] == "000000"
+        return guess_hash[:5] == "00000"
         
 # =======------ OUTSIDE BLOCKCHAIN CLASS ------========= #
 
@@ -135,9 +144,11 @@ def mine():
     block_string = json.dumps(blockchain.last_block, sort_keys=True)
     
     if blockchain.valid_proof(block_string, submitted_proof):
+        blockchain.new_transaction(sender=0, recipient=values['id'], amount=1)
         
         previous_hash = blockchain.hash(blockchain.last_block)
         block = blockchain.new_block(submitted_proof, previous_hash)
+        
     
         response = {
             'message': "New Block Forged",
@@ -150,14 +161,17 @@ def mine():
         return jsonify(response), 200
     
     else:
-        response = { 'message': "Proof was invalid or late" }
+        response = { 'message': "Proof was invalid" }
         return jsonify(response), 400
 
 
-@app.route('/lastblock', methods=['GET'])
-def last_block():
+@app.route('/chain', methods=['GET'])
+def full_chain():
         # TODO: Return the chain and its current length
-    response = { 'last_block': blockchain.last_block }
+    response = { 
+        'length': len(blockchain.chain),
+        'chain': blockchain.chain
+        }
     return jsonify(response), 200
 
 
@@ -165,9 +179,23 @@ def last_block():
 # last block in the chain
 @app.route('/last_block', methods=['GET'])
 def return_last_block():
-    response = {
-        'last_block': blockchain.last_block
-    }
+    response = { 'last_block': blockchain.last_block }
+    return jsonify(response), 200
+
+
+@app.route('/transactions/new', methods=['POST'])
+def get_new_transaction():
+    values = request.get_json()
+    
+    required = ['sender', 'recipient', 'amount']
+    if not all(k in values for k in required):
+        return 'Missing values', 400
+    
+    index = blockchain.new_transaction(values['sender'],
+                                       values['recipient'],
+                                       values['amount'])
+    
+    response = { 'message': f"Transaction will be added to Block {index}" }
     return jsonify(response), 200
 
 # Run the program on port 5000
