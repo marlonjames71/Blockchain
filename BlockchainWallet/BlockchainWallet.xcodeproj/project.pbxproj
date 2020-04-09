@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		3709D7E7243FBF8B00031202 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709D7E6243FBF8B00031202 /* AppDelegate.swift */; };
 		3709D7E9243FBF8B00031202 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709D7E8243FBF8B00031202 /* SceneDelegate.swift */; };
-		3709D7EB243FBF8B00031202 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709D7EA243FBF8B00031202 /* ViewController.swift */; };
 		3709D7EE243FBF8B00031202 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3709D7EC243FBF8B00031202 /* Main.storyboard */; };
 		3709D7F0243FBF8D00031202 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3709D7EF243FBF8D00031202 /* Assets.xcassets */; };
 		3709D7F3243FBF8D00031202 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3709D7F1243FBF8D00031202 /* LaunchScreen.storyboard */; };
+		3709D7FE243FC47800031202 /* BlockChainTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709D7FD243FC47800031202 /* BlockChainTableVC.swift */; };
+		3709D801243FC4DE00031202 /* BlockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709D800243FC4DE00031202 /* BlockCell.swift */; };
+		3709D803243FC4F000031202 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709D802243FC4F000031202 /* TransactionCell.swift */; };
+		3709D806243FC57000031202 /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709D805243FC57000031202 /* BlockModel.swift */; };
+		37B263B6243FDBB5003DFE0D /* TransactionTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B263B5243FDBB5003DFE0D /* TransactionTableVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3709D7E3243FBF8B00031202 /* BlockchainWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlockchainWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3709D7E6243FBF8B00031202 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3709D7E8243FBF8B00031202 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3709D7EA243FBF8B00031202 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3709D7ED243FBF8B00031202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3709D7EF243FBF8D00031202 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3709D7F2243FBF8D00031202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3709D7F4243FBF8D00031202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3709D7FD243FC47800031202 /* BlockChainTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockChainTableVC.swift; sourceTree = "<group>"; };
+		3709D800243FC4DE00031202 /* BlockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockCell.swift; sourceTree = "<group>"; };
+		3709D802243FC4F000031202 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		3709D805243FC57000031202 /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
+		37B263B5243FDBB5003DFE0D /* TransactionTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,59 @@
 		3709D7E5243FBF8B00031202 /* BlockchainWallet */ = {
 			isa = PBXGroup;
 			children = (
-				3709D7E6243FBF8B00031202 /* AppDelegate.swift */,
-				3709D7E8243FBF8B00031202 /* SceneDelegate.swift */,
-				3709D7EA243FBF8B00031202 /* ViewController.swift */,
-				3709D7EC243FBF8B00031202 /* Main.storyboard */,
-				3709D7EF243FBF8D00031202 /* Assets.xcassets */,
-				3709D7F1243FBF8D00031202 /* LaunchScreen.storyboard */,
+				3709D804243FC55700031202 /* Model */,
+				3709D7FF243FC4C600031202 /* Cells */,
+				3709D7FB243FC41B00031202 /* View Controllers */,
+				3709D7FC243FC44700031202 /* Storyboards */,
 				3709D7F4243FBF8D00031202 /* Info.plist */,
+				3709D7FA243FC40B00031202 /* Resources */,
 			);
 			path = BlockchainWallet;
+			sourceTree = "<group>";
+		};
+		3709D7FA243FC40B00031202 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3709D7E6243FBF8B00031202 /* AppDelegate.swift */,
+				3709D7E8243FBF8B00031202 /* SceneDelegate.swift */,
+				3709D7EF243FBF8D00031202 /* Assets.xcassets */,
+				3709D7F1243FBF8D00031202 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3709D7FB243FC41B00031202 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3709D7FD243FC47800031202 /* BlockChainTableVC.swift */,
+				37B263B5243FDBB5003DFE0D /* TransactionTableVC.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		3709D7FC243FC44700031202 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3709D7EC243FBF8B00031202 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		3709D7FF243FC4C600031202 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3709D800243FC4DE00031202 /* BlockCell.swift */,
+				3709D802243FC4F000031202 /* TransactionCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3709D804243FC55700031202 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3709D805243FC57000031202 /* BlockModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +190,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3709D7EB243FBF8B00031202 /* ViewController.swift in Sources */,
 				3709D7E7243FBF8B00031202 /* AppDelegate.swift in Sources */,
+				37B263B6243FDBB5003DFE0D /* TransactionTableVC.swift in Sources */,
+				3709D803243FC4F000031202 /* TransactionCell.swift in Sources */,
+				3709D7FE243FC47800031202 /* BlockChainTableVC.swift in Sources */,
 				3709D7E9243FBF8B00031202 /* SceneDelegate.swift in Sources */,
+				3709D801243FC4DE00031202 /* BlockCell.swift in Sources */,
+				3709D806243FC57000031202 /* BlockModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
