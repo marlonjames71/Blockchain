@@ -34,6 +34,10 @@ struct Block: Codable {
 			.blockDate
 			.string(from: Date(timeIntervalSince1970: timestamp))
 	}
+
+	var transCount: String {
+		"\(transactions.count)"
+	}
 }
 
 
@@ -41,14 +45,18 @@ struct Transaction: Codable {
 	let amount: Int
 	let recipient: String
 	let sender: String
+
+	var amountStr: String {
+		"\(amount)"
+	}
 }
 
 
 extension DateFormatter {
 	static var blockDate: DateFormatter = {
 		let formatter = DateFormatter()
-		formatter.dateStyle = .full
-		formatter.timeStyle = .full
+		formatter.dateStyle = .medium
+		formatter.timeStyle = .medium
 		return formatter
 	}()
 }

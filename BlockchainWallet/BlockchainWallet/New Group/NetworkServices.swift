@@ -19,46 +19,21 @@ class NetworkManager {
 
 	let blockchainURL = URL(string: "http://localhost:5000/chain")!
 
-	var jsonDecoder: JSONDecoder {
-		let decoder = JSONDecoder()
-		decoder.keyDecodingStrategy = .convertFromSnakeCase
-		return decoder
-	}
+	func fetchBlockChain(completion: @escaping (Result<Chain, NetworkError>) -> Void) {
 
-	func fetchBlockChain() {
-
-		var request = blockchainURL.request
-		request.decoder = jsonDecoder
+		let request = blockchainURL.request
+		(request.decoder as? JSONDecoder)?.keyDecodingStrategy = .convertFromSnakeCase
 
 		networkHandler.transferMahCodableDatas(with: request) { (result: Result<Chain, NetworkError>) in
 			switch result {
 			case .success(let chain):
 				self.blockchain = chain.chain
 				print(self.blockchain)
+				completion(.success(chain))
 			case .failure(let error):
 				NSLog("Error fetching blockchain: \(error)")
+				completion(.failure(error))
 			}
 		}
-
-//		let dataTask = URLSession.shared.dataTask(with: blockchainURL) { data, response, error in
-//			if let error = error {
-//				NSLog("Error with dataTask: \(error)")
-//				return
-//			}
-//
-//			guard let response = response as? HTTPURLResponse,
-//				response.statusCode == 200 else {
-//					NSLog("Bad status code")
-//					return
-//			}
-//
-//			guard let data = data else {
-//				NSLog("Error fetching data")
-//				return
-//			}
-//
-//			print(data)
-//
-//		}.resume()
 	}
 }

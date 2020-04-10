@@ -106,7 +106,7 @@
                                     <outlet property="dateLabel" destination="HBG-Za-bmt" id="q7l-cu-a2C"/>
                                     <outlet property="proofLabel" destination="AFE-zA-4ar" id="WU1-Vp-zWi"/>
                                     <outlet property="transactionCountLabel" destination="EfX-TT-Aax" id="Kal-cC-Mqn"/>
-                                    <segue destination="LnX-b4-rpp" kind="presentation" id="Jat-qG-A9Y"/>
+                                    <segue destination="LnX-b4-rpp" kind="presentation" identifier="transactionSegue" id="Jat-qG-A9Y"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

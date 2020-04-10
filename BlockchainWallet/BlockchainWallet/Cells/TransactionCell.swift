@@ -15,4 +15,17 @@ class TransactionCell: UITableViewCell {
 	@IBOutlet weak var recipientLabel: UILabel!
 	@IBOutlet weak var senderLabel: UILabel!
 
+	var transaction: Transaction? {
+		didSet {
+			updateViews()
+		}
+	}
+
+	private func updateViews() {
+		guard let transaction = transaction else { return }
+		amountLabel.text = transaction.amountStr
+		recipientLabel.text = transaction.recipient
+		senderLabel.text = transaction.sender
+	}
+
 }

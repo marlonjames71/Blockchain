@@ -10,7 +10,18 @@ import UIKit
 
 class TransactionTableVC: UITableViewController {
 
-	var block: Block?
+	var transactions: [Transaction] = [] {
+		didSet {
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+			}
+		}
+	}
+	var blockIndex: Int = 0 {
+		didSet {
+			navigationItem.prompt = "Block \(blockIndex)"
+		}
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -20,15 +31,13 @@ class TransactionTableVC: UITableViewController {
 	// MARK: - Table view data source
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		// #warning Incomplete implementation, return the number of rows
-		return 1
+		transactions.count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath) as? TransactionCell else { return UITableViewCell() }
-		cell.amountLabel.text = "300"
-		cell.recipientLabel.text = "Gunship"
-		cell.senderLabel.text = "Unknown"
+		let transaction = transactions[indexPath.row]
+		cell.transaction = transaction
 		return cell
 	}
 

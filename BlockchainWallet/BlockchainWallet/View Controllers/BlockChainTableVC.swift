@@ -14,23 +14,25 @@ class BlockChainTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		NetworkManager.shared.fetchBlockChain()
+		NetworkManager.shared.fetchBlockChain { [weak self] _ in
+			guard let self = self else { return }
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+			}
+		}
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+		return NetworkManager.shared.blockchain.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let cell = tableView.dequeueReusableCell(withIdentifier: "BlockCell", for: indexPath) as? BlockCell else { return UITableViewCell() }
-		cell.blockTitle = "Block 2"
-		cell.dateLabel.text = "02/03/2020"
-		cell.proofLabel.text = "2003"
-		cell.transactionCountLabel.text = "23"
+		let block = NetworkManager.shared.blockchain[indexPath.row]
+		cell.block = block
 
         return cell
     }
@@ -42,15 +44,23 @@ class BlockChainTableVC: UITableViewController {
 	}
 
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+		if segue.identifier == "transactionSegue" {
+			guard let navController = segue.destination as? UINavigationController else { return }
+			guard let transactionVC = navController.viewControllers.first as? TransactionTableVC else { return }
+
+			guard let indexPath = tableView.indexPathForSelectedRow else { return }
+
+			let block = NetworkManager.shared.blockchain[indexPath.row]
+			transactionVC.blockIndex = block.index
+			transactionVC.transactions = block.transactions
+		}
     }
-    */
+
 
 
 	// MARK: - Helper Functions
@@ -62,9 +72,9 @@ class BlockChainTableVC: UITableViewController {
 		}
 		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
 		let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-			// Do save code here
 			guard let textField = ac.textFields?.first else { return }
 			let input = textField.text ?? ""
+			// Do save code here
 			print(input)
 		}
 
