@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		3709D803243FC4F000031202 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709D802243FC4F000031202 /* TransactionCell.swift */; };
 		3709D806243FC57000031202 /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709D805243FC57000031202 /* BlockModel.swift */; };
 		37B263B6243FDBB5003DFE0D /* TransactionTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B263B5243FDBB5003DFE0D /* TransactionTableVC.swift */; };
+		37B263B9243FEAC0003DFE0D /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B263B8243FEAC0003DFE0D /* NetworkServices.swift */; };
+		37B263BC2440166E003DFE0D /* NetworkHandler in Frameworks */ = {isa = PBXBuildFile; productRef = 37B263BB2440166E003DFE0D /* NetworkHandler */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,7 @@
 		3709D802243FC4F000031202 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		3709D805243FC57000031202 /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
 		37B263B5243FDBB5003DFE0D /* TransactionTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableVC.swift; sourceTree = "<group>"; };
+		37B263B8243FEAC0003DFE0D /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37B263BC2440166E003DFE0D /* NetworkHandler in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +68,7 @@
 		3709D7E5243FBF8B00031202 /* BlockchainWallet */ = {
 			isa = PBXGroup;
 			children = (
+				37B263B7243FEAB1003DFE0D /* New Group */,
 				3709D804243FC55700031202 /* Model */,
 				3709D7FF243FC4C600031202 /* Cells */,
 				3709D7FB243FC41B00031202 /* View Controllers */,
@@ -119,6 +124,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		37B263B7243FEAB1003DFE0D /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				37B263B8243FEAC0003DFE0D /* NetworkServices.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +148,9 @@
 			dependencies = (
 			);
 			name = BlockchainWallet;
+			packageProductDependencies = (
+				37B263BB2440166E003DFE0D /* NetworkHandler */,
+			);
 			productName = BlockchainWallet;
 			productReference = 3709D7E3243FBF8B00031202 /* BlockchainWallet.app */;
 			productType = "com.apple.product-type.application";
@@ -163,6 +179,9 @@
 				Base,
 			);
 			mainGroup = 3709D7DA243FBF8B00031202;
+			packageReferences = (
+				37B263BA2440166E003DFE0D /* XCRemoteSwiftPackageReference "NetworkHandler" */,
+			);
 			productRefGroup = 3709D7E4243FBF8B00031202 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -196,6 +215,7 @@
 				3709D7FE243FC47800031202 /* BlockChainTableVC.swift in Sources */,
 				3709D7E9243FBF8B00031202 /* SceneDelegate.swift in Sources */,
 				3709D801243FC4DE00031202 /* BlockCell.swift in Sources */,
+				37B263B9243FEAC0003DFE0D /* NetworkServices.swift in Sources */,
 				3709D806243FC57000031202 /* BlockModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +414,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		37B263BA2440166E003DFE0D /* XCRemoteSwiftPackageReference "NetworkHandler" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mredig/NetworkHandler.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		37B263BB2440166E003DFE0D /* NetworkHandler */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37B263BA2440166E003DFE0D /* XCRemoteSwiftPackageReference "NetworkHandler" */;
+			productName = NetworkHandler;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3709D7DB243FBF8B00031202 /* Project object */;
 }

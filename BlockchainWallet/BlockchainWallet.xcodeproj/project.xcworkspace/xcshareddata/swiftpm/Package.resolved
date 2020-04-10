@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "NetworkHandler",
+        "repositoryURL": "https://github.com/mredig/NetworkHandler.git",
+        "state": {
+          "branch": null,
+          "revision": "5d37e35596881c52deb5aab134f6bef395c8eb2d",
+          "version": "0.9.9"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

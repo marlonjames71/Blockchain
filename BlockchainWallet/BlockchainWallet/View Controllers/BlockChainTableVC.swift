@@ -12,9 +12,9 @@ class BlockChainTableVC: UITableViewController {
 
 	// MARK: - Outlets & Properties
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
+		NetworkManager.shared.fetchBlockChain()
     }
 
     // MARK: - Table view data source

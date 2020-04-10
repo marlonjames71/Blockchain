@@ -8,10 +8,15 @@
 
 import UIKit
 
-public struct Block: Codable {
+struct Chain: Codable {
+	let chain: [Block]
+	let length: Int
+}
+
+struct Block: Codable {
 	let hash: String
 	let index: Int
-	let previousHash: String
+	let previousHash: String?
 	let proof: Int
 	let timestamp: TimeInterval
 	let transactions: [Transaction]
@@ -33,7 +38,7 @@ public struct Block: Codable {
 
 
 struct Transaction: Codable {
-	let amount: String
+	let amount: Int
 	let recipient: String
 	let sender: String
 }

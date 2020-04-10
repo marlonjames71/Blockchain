@@ -13,7 +13,7 @@ class Blockchain(object):
         self.current_transactions = []
 
         # Create the genesis block
-        self.new_block(previous_hash=1, proof=100)
+        self.new_block(previous_hash="1", proof=100)
 
     def new_block(self, proof, previous_hash=None):
         """
@@ -128,6 +128,20 @@ node_identifier = str(uuid4()).replace('-', '')
 # Instantiate the Blockchain
 blockchain = Blockchain()
 
+# user
+user = "Gunship"
+
+
+@app.route('/user/change_id', methods=['POST'])
+def update_id():
+    value = request.get_json()
+    
+    if not 'id' in value:
+        response = { 'id': 'Missing value' }
+        return jsonify(response), 400
+    
+    node_identifier = value
+    
 
 @app.route('/mine', methods=['POST'])
 def mine():
@@ -144,7 +158,7 @@ def mine():
     block_string = json.dumps(blockchain.last_block, sort_keys=True)
     
     if blockchain.valid_proof(block_string, submitted_proof):
-        blockchain.new_transaction(sender=0, recipient=values['id'], amount=1)
+        blockchain.new_transaction(sender="Dummy", recipient=values['id'], amount=1)
         
         previous_hash = blockchain.hash(blockchain.last_block)
         block = blockchain.new_block(submitted_proof, previous_hash)
