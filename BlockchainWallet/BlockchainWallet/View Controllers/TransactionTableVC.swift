@@ -28,6 +28,13 @@ class TransactionTableVC: UITableViewController {
 		tableView.tableFooterView = UIView()
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		if transactions.isEmpty {
+			title = "No Trtansactions"
+		}
+	}
+
 	// MARK: - Table view data source
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
